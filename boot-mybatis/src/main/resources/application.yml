@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: bootmybatis
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/world?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    username: root
+    #type: com.alibaba.druid.pool.DruidDataSource
+server:
+  port: 8111
+
+
+mybatis-plus:
+  mapper-locations: com.boot.mybatis.dao/*.xml
+  type-aliases-package: com.boot.mybatis.model
+  configuration:
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    com.baomidou.mybatisplus.core.mapper: debug
+    com.boot.mybatis.dao: debug
