@@ -1,5 +1,7 @@
 "# lean-boot" 
+###项目结构说明
 boot-elaticsearch  项目直接访问elasticsearch 进行负责查询功能
+
 boot-mybatis       普通的mysql数据库项目，主要是将日志推送到ELK
 
 #用于测试学习ELK+Filebeat，而做的一些demo
