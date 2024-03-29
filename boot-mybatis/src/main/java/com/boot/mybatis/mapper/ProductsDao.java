@@ -1,9 +1,9 @@
-package com.boot.mybatis.dao;
+package com.boot.mybatis.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.boot.mybatis.model.Products;
+import com.boot.mybatis.entity.Products;
 import org.apache.ibatis.annotations.Param;
  
 /**

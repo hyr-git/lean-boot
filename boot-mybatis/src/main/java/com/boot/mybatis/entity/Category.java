@@ -1,4 +1,4 @@
-package com.boot.mybatis.model;
+package com.boot.mybatis.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

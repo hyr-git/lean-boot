@@ -3,10 +3,12 @@ package com.boot.bootdemo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.boot.mybatis.BootMybatisApplication;
-import com.boot.mybatis.dao.ProductsDao;
-import com.boot.mybatis.model.City;
-import com.boot.mybatis.model.Products;
+import com.boot.mybatis.entity.Country;
+import com.boot.mybatis.mapper.ProductsDao;
+import com.boot.mybatis.entity.City;
+import com.boot.mybatis.entity.Products;
 import com.boot.mybatis.service.ICityService;
+import com.boot.mybatis.service.ICountryService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -113,6 +115,16 @@ class DemoApplicationTests {
         log.info("testPage-----当前页的记录"+page.getRecords());
         log.info("testPage-----当前页的记录"+page.getRecords());
         log.info("testPage-----获取总条数"+page.getTotal());
+    }
+
+
+    @Resource
+    private ICountryService countryService;
+
+    @Test
+    public void testCountry(){
+        List<Country> countryList = countryService.list();
+        log.info("testCountry-----countryList:{}",countryList);
     }
 }
 

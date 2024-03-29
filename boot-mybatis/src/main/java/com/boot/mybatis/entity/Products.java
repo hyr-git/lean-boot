@@ -1,4 +1,4 @@
-package com.boot.mybatis.model;
+package com.boot.mybatis.entity;
 
 import java.io.Serializable;
 
