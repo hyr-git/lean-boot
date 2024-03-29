@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: boot-es
+  data:
+    elasticsearch:
+      client:
+          reactive:
+            username: elasticsearch
+            endpoints: 127.0.0.1:9200
+            connection-timeout: 1000000
+            socket-timeout: 1000000
+
+server:
+  port: 9010
+
+log:
+  logstash-host: 127.0.0.1:4560
+
+#设置日志级别,默认info
+logging:
+  level:
+    root: info
+  file:
+    name: D:\install\es-filebeat-log\console.log
+  #config:
+    #classpath: log/logback-spring.xml
+
+

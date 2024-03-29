@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: boot-es
+  data:
+    elasticsearch:
+      # rest:
+      #  uris: 127.0.0.1:9200
+      client:
+        reactive:
+          username: elasticsearch
+          endpoints: 127.0.0.1:9200
+          connection-timeout: 1000000
+          socket-timeout: 1000000
+server:
+  port: 9010
+
+

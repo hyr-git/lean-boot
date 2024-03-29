@@ -1,0 +1,232 @@
+
+get /_analyze
+{
+  "text":"我是王者荣耀玩家",
+  "analyzer":"ik_max_word"
+}
+
+
+
+
+get /_analyze
+{
+  "text":"我是王者荣耀玩家",
+  "analyzer":"ik_smart"
+}
+
+
+-- 模糊查询
+get goods/_search
+{
+  "query":{
+    "match":{
+      "title":"小米"
+    }
+  }
+}
+
+
+get goods/_search
+{
+  "query":{
+    "term":{
+      "category": "电脑"
+    }
+  }
+}
+
+
+
+get goods/_search
+{
+  "size":0,
+  "aggregations":{
+    "avg_price":{
+      "avg": {
+        "field": "price"
+      }
+    },
+    "max_price":{
+      "max":{
+        "field": "price"
+      }
+    },
+
+    "sum_price":{
+        "sum":{
+          "field":"price"
+        }
+      },
+    "brand_count":{
+        "terms":{
+          "field":"brand"
+        }
+    },
+   "category_sum":{
+     "terms":{
+          "field":"category"
+        }
+   }
+}
+}
+
+
+
+//must子句中 查询品牌为电脑，并且标题中包含"pro",must_not子句中排除价格在小于等于1000的商品，should子句中满足品牌是会为或者联想的
+get goods/_search
+{
+  "query":{
+    "bool":{
+      "must":[
+        {"term":{"category":"电脑"}},
+        {"match": {"title": "pro"}}
+      ],
+      "must_not": [
+        {"range": {
+          "price": {"lte": 1000}
+        }}
+      ],
+      "should": [
+        {"match": {
+          "brand": "华为"
+        }},
+          {"match": {
+          "brand": "联想"
+        }}
+      ]
+      }
+    }
+  }
+}
+
+
+
+get article_index/_search
+{"query":{
+      "match":{"title":"Spring"}
+    }
+}
+
+get article_index/_search
+{"query":{
+    "bool":{
+      "must":[
+          {"match":{"title":"Spring"}},
+          {"match_phrase_prefix": {
+            "content": "Spring Data Elasticsearch"
+          }}
+      ]
+      ,
+      "must_not": [
+        {"range": {
+         "price":{"lte":5000}
+        }}
+
+      ],
+      "should": [
+        {"match": {
+          "title": "Es-0"
+        }},
+         {"match": {
+          "title": "Es-1"
+        }}
+      ]
+    }
+    }
+
+}
+
+
+
+get article_index/_search
+{"query":{
+      "match_phrase":{"title":"Spring data"}
+    }
+}
+
+
+get article_index/_search
+{
+  "query":{
+    "range":{
+      "price":{
+        "gte":10000,
+        "lte":200000
+      }
+    }
+  }
+}
+
+
+get article_index/_search
+{"query":{
+      "prefix":{"title.keyword":"Spring Data"}
+    }
+}
+
+
+get article_index/_search
+{"query":{
+      "wildcard":{"content.keyword":"*pri*"}
+    }
+}
+
+
+get article_index/_search
+{"query":{
+    "fuzzy":{"content":{
+      "value": "Spring",
+      "fuzziness": 2
+    }}
+    }
+}
+
+
+get /article_index/_search
+{"query":{
+        "prefix": {
+          "authors.name": "jianzonlin"
+        }
+  }
+}
+
+
+
+//查询存在category字段
+get /article_index/_search
+{"query":{
+        "exists": {
+          "field": "category"
+        }
+  }
+}
+
+//查询不存在category字段
+get /article_index/_search
+{"query":{
+    "bool": {
+      "must_not": [
+        {"exists": {
+          "field": "category"
+        }}
+      ]
+    }
+
+  }
+}
+
+
+//查询category字段为空
+get /article_index/_search
+{"query":{
+    "bool": {
+      "must_not": [
+        {"exists": {
+          "field": "category"
+        }},
+        {"match":{ "category":""}}
+      ]
+    }
+
+  }
+}
