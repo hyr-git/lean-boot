@@ -36,7 +36,6 @@
 
 
 
-
 ###logstash解压之后，修改相关配置文件
 1、复制一份logstash.yml重命名为logstash-log.yml
 ![](doc/logstash路径1.png)
